@@ -1,0 +1,5 @@
+.image-size {
+  width: 50px; /* or whatever size you want */
+  height: 50px; /* make sure this is the same as the width for a perfect square */
+  object-fit: cover;
+}
