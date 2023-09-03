@@ -2,9 +2,8 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useGetArtworkByIdQuery } from "../../api/api";
 import { iiif_url } from "../../cosntants";
-import Loader from "../Loader/Loader";
-import { CaretDown, Star } from "phosphor-react";
-import FavoriteButton from "components/FavoriteButton/FavoriteButton";
+import Loader from "../../components/Loader/Loader";
+import FavoriteButton from "../../components/FavoriteButton/FavoriteButton";
 
 const ArtworkDetailCard = () => {
   const { id } = useParams();
@@ -29,7 +28,6 @@ const ArtworkDetailCard = () => {
     place_of_origin: placeOfOrigin,
     artwork_type_title: artworkTypeTitle,
     credit_line: creditLine,
-    thumbnail: { lqip: thumbnailImage },
   } = artwork;
 
   const iiifUrl = image_id

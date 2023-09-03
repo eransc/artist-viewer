@@ -1,22 +1,24 @@
 import React from "react";
-import useFavorites from "../../hooks/useFavorites"; // Adjust the import path as needed
-import { ArtWork } from "api/types/ArtWork";
+import { useDispatch, useSelector } from "react-redux";
+import { ArtWork } from "@/api/types/ArtWork";
+import { RootState } from "../../store/store";
+import { addFavorite, removeFavorite } from "../../store/slices/favoriteSlice";
 
 interface FavoriteButtonProps {
   artItem: ArtWork;
 }
 
 const FavoriteButton: React.FC<FavoriteButtonProps> = ({ artItem }) => {
-  const { favorites, addFavorite, removeFavorite } = useFavorites("favorites");
-  
-  // Check if the artItem is a favorite based on its 'id'
-  const isFavorite = favorites.some(favorite => favorite.id === artItem.id);
+  const dispatch = useDispatch();
+  const favorites = useSelector((state: RootState) => state.favorites);
+
+  const isFavorite = favorites.some((favorite) => favorite.id === artItem.id);
 
   const toggleFavorite = () => {
     if (isFavorite) {
-      removeFavorite(artItem);
+      dispatch(removeFavorite(artItem.id));
     } else {
-      addFavorite(artItem);
+      dispatch(addFavorite(artItem));
     }
   };
 

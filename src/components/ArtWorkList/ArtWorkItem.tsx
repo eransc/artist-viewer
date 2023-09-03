@@ -1,9 +1,8 @@
-import { ArtWork } from "api/types/ArtWork";
-import FavoriteButton from "components/FavoriteButton/FavoriteButton";
 import React from "react";
 import { Link } from "react-router-dom";
+import { ArtWork } from "@/api/types/ArtWork";
+import FavoriteButton from "../../components/FavoriteButton/FavoriteButton";
 
-// In your ArtWorkItem component
 interface ArtWorkItemProps {
   artwork: ArtWork;
   iiif_url: string;
@@ -12,8 +11,8 @@ interface ArtWorkItemProps {
 const ArtWorkItem: React.FC<ArtWorkItemProps> = ({ artwork, iiif_url }) => {
   const iiifUrl = artwork.image_id
     ? `${iiif_url}/${artwork.image_id}/full/843,/0/default.jpg`
-    : "https://via.placeholder.com/150?text=Art+Not+Available"; // This is a placeholder image
-  
+    : "https://via.placeholder.com/150?text=Art+Not+Available"; // Placeholder image
+
   return (
     <li className="flex items-center justify-between w-full mb-4">
       <div className="flex items-center">
@@ -26,7 +25,7 @@ const ArtWorkItem: React.FC<ArtWorkItemProps> = ({ artwork, iiif_url }) => {
           <Link to={`/artwork-detail/${artwork.id}`}>{artwork.title}</Link>
         )}
       </div>
-      <FavoriteButton artItem={artwork}/>
+      <FavoriteButton artItem={artwork} />
     </li>
   );
 };

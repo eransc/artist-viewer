@@ -1,10 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./store/store";
-import ArtWorkList from "components/ArtWorkList/ArtWorkList";
-import ArtworkDetailCard from "components/ArtWorkDetail/ArtworkDetailCard";
-import Favorites from "components/Favorites/Favorites";
+import store from "./store/store";
+import ArtWorkList from  "./components/ArtWorkList/ArtWorkList";
+import ArtworkDetailCard from "./components/ArtWorkDetail/ArtworkDetailCard";
+import Favorites from "./components/Favorites/Favorites";
 
 const App: React.FC = () => {
   return (
@@ -45,7 +50,10 @@ const App: React.FC = () => {
           <div className="p-12">
             <Routes>
               <Route path="/" element={<ArtWorkList />} />
-              <Route path="/artwork-detail/:id" element={<ArtworkDetailCard />} />
+              <Route
+                path="/artwork-detail/:id"
+                element={<ArtworkDetailCard />}
+              />
               <Route path="/favorites" element={<Favorites />} />
             </Routes>
           </div>

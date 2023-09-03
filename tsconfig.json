@@ -12,7 +12,10 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "strict": false,
 
     "lib": ["es2021", "dom"],    

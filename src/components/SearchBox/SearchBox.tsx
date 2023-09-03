@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { debounce } from 'lodash';
 
 interface SearchBoxProps {
@@ -8,14 +8,23 @@ interface SearchBoxProps {
 const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [query, setQuery] = useState<string>('');
 
-  const debouncedSearch = useCallback(
-    debounce((q) => onSearch(q), 500),
-    [] // dependencies of useCallback, empty so the function is only created once
-  );
-
   useEffect(() => {
+    // Define debounced function inside useEffect
+    const debouncedSearch = debounce((q) => {
+      onSearch(q);
+    }, 500);
+
+    // Now use that debounced function
     debouncedSearch(query);
-  }, [query, debouncedSearch]);
+
+    // Cleanup
+    return () => {
+      debouncedSearch.cancel();
+    };
+
+    // We can safely ignore exhaustive-deps for debounced function
+    // because it doesn't rely on any variable that could change.
+  }, [query, onSearch]); // Dependency on 'query'
 
   const clearSearch = () => {
     setQuery('');

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import {
   useLazyGetArtworksQuery,
   useLazySearchArtworksQuery,
@@ -10,7 +9,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import ArtWorkItem from "./ArtWorkItem";
 import Loader from "../Loader/Loader";
 import { iiif_url } from "../../cosntants";
-import { ArtWork } from "api/types/ArtWork";
+import { ArtWork } from "@/api/types/ArtWork";
 
 // loading indicator not working
 // alias /@components to /src/components
